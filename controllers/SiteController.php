@@ -134,7 +134,6 @@ class SiteController extends Controller
         $backet = Yii::$app->session->get('backet', []);
         $backetItems = [];
         $totalAmount = 0;
-
         foreach ($backet as $id => $item) {
             $product = Product::findOne($id);
             if ($product) {
@@ -147,7 +146,6 @@ class SiteController extends Controller
                 $totalAmount += $product->price * $item['balance'];
             }
         }
-
         return $this->render('backet', [
             'backetItems' => $backetItems,
             'totalAmount' => $totalAmount,
@@ -161,23 +159,18 @@ class SiteController extends Controller
     public function actionAdd($id)
     {
         $product = Product::findOne($id);
-
         if ($product === null) {
-            throw new NotFoundHttpException("Товар не найден.");
+           throw new NotFoundHttpException("Товар не найден.");
         }
-
         // Получаем количество из POST-запроса
         $balance = Yii::$app->request->post('balance', 1);
-
         // Проверяем, достаточно ли товара на складе
         if ($product->balance < $balance) {
             Yii::$app->session->setFlash('error', 'Недостаточно товара на складе.');
             return $this->redirect(['product', 'id' => $id]);
         }
-
         // Получаем текущую корзину
         $backet = Yii::$app->session->get('backet', []);
-
         if (isset($backet[$id])) {
             // Увеличиваем количество, если товар уже в корзине
             $backet[$id]['balance'] += $balance;
@@ -197,28 +190,18 @@ class SiteController extends Controller
     public function actionRemove($id)
     {
         $backet = Yii::$app->session->get('backet', []);
-    
         // Проверяем, существует ли товар в корзине
         if (isset($backet[$id])) {
             // Удаляем товар из корзины
             unset($backet[$id]);
-    
             // Сохраняем обновленную корзину в сессии
             Yii::$app->session->set('backet', $backet);
             Yii::$app->session->setFlash('success', 'Товар удален из корзины.');
         }
-    
         // Перенаправляем обратно на страницу
         return $this->redirect(['site/backet']); 
     }
     
-
-
-
-
-
-
-
     protected function findModel($id)
     {
         if (($model = Product::findOne(['id' => $id])) !== null) {
@@ -227,9 +210,6 @@ class SiteController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-
-
     protected function getBalanceSession($model)
     {
         // Получаем данные из корзины
@@ -266,5 +246,4 @@ class SiteController extends Controller
     }
     return $this->redirect(['site/backet']);
 }
-
 }
