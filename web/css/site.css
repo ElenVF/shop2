@@ -1,0 +1,183 @@
+main > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    background-color: #f5f5f5;
+    font-size: .9em;
+    height: 60px;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    content: '';
+    left: 3px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: solid 5px transparent;
+    margin: 4px 4px 2px 4px;
+    background: transparent;
+}
+
+a.asc:after {
+    border-bottom: solid 7px #212529;
+    border-top-width: 0;
+}
+
+a.desc:after {
+    border-top: solid 7px #212529;
+    border-bottom-width: 0;
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.nav li > form > button.logout {
+    padding-top: 7px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media(max-width:767px) {
+    .nav li > form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.nav > li > form > button.logout:focus {
+    outline: none;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+
+
+    .image-container {
+        overflow: hidden;
+        border-radius: 0.25rem; /* Скругленные углы */
+    }
+ 
+
+
+
+    .card {
+        border-radius: 10px;
+        background-color: #ffffffa2;
+    }
+    .card-body {
+        position: relative;
+    }
+
+
+
+    
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4caf50; /* Зеленый цвет для успешных уведомлений */
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        z-index: 1000;
+        transition: opacity 0.5s ease;
+    }
+
+    .category-list {
+        list-style: none; /* Убираем маркеры списка */
+        padding: 15px; /* Убираем отступы */
+        margin: 0; /* Убираем внешние отступы */
+        display: flex; /* Используем flexbox для горизонтального расположения */
+    }
+    
+    .category-list li {
+        margin-right: 20px; /* Отступ между элементами списка */
+    }
+    
+
+    
+    .category-list li a {
+        text-decoration: none; /* Убираем подчеркивание ссылок */
+        color: #333; /* Цвет текста ссылки */
+        padding: 10px 15px; /* Внутренние отступы для ссылок */
+        border-radius: 5px; /* Закругленные углы */
+        transition: background-color 0.3s; /* Плавный переход для фона */
+    }
+    
+    .category-list li a.active {
+        background-color:rgba(38, 41, 44, 0.62); /* Цвет фона для активной ссылки */
+        color: white; /* Цвет текста для активной ссылки */
+    }
+    
+    .category-list li a:hover {
+        background-color:rgba(38, 41, 44, 0.62); /* Цвет фона при наведении */
+        color: white; /* Цвет текста при наведении */
+    }
+    html, body {
+        height: 100%;
+        margin: 0; /* Удалите отступы по умолчанию */
+    }
+    body{font-family:  "PT Sans Narrow", sans-serif;
+        background-image: url('/web/images/bg.jpg') ;
+        background-size: cover;
+        height: 100%;
+  }
+ 
+
+    .background-div {
+        width: 100%; /* Ширина div */
+        height: 400px; /* Высота div */
+        background-image: url('path/to/your/image.jpg'); /* Путь к вашему изображению */
+        background-repeat: no-repeat; /* Не повторять изображение */
+        background-size: cover; /* Покрыть весь div изображением */
+        background-position: center; /* Центрирование изображения */
+    }
+
+    .list-group-item{
+        padding: 15px;
+        background-color: #ffffffa2;
+    }
+    td {
+        background-color: rgba(255, 255, 255, 0.064); /* белый с 50% прозрачностью */
+    }
+
+    .table_custom { --bs-table-bg: #ffffffa2 !important; 
+  }
+
