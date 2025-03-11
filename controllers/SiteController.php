@@ -83,42 +83,50 @@ class SiteController extends Controller
 
         ]);
     }
-
     public function actionCategory()
     {
         // Получаем ID категории из запроса
         $selectedCategoryId = Yii::$app->request->get('id');
+        
         // Проверяем, существует ли категория с данным ID
         $selectedCategory = Category::findOne($selectedCategoryId);
         if ($selectedCategoryId && !$selectedCategory) {
             throw new NotFoundHttpException('Категория не найдена.');
         }
+        
+        // Получаем все категории
         $categories = Category::find()->all();
-        $items = Product::find()->all(); 
-        foreach ($items as $item) {
-            $item->quantity = $this->getBalanceSession($item);
-        }
-        // Если выбрана категория, фильтруем товары по ней
+    
+        // Если выбрана категория, получаем товары только этой категории, иначе все товары
         if ($selectedCategoryId) {
             $productIds = ProductCategory::find()
                 ->select('product_id')
                 ->where(['category_id' => $selectedCategoryId])
                 ->column(); // Получаем массив ID продуктов
-
-            // Фильтруем товары по их ID
+    
             $items = Product::find()
                 ->where(['id' => $productIds])
                 ->all();
+        } else {
+            // Если категория не выбрана, получаем все товары
+            $items = Product::find()->all();
         }
+    
+        // Заполняем количество товара
+        foreach ($items as $item) {
+            $item->quantity = $this->getBalanceSession($item);
+        }
+    
         return $this->render('category', [
             'items' => $items,
             'categories' => $categories,
             'selectedCategoryId' => $selectedCategoryId,
             'selectedCategory' => $selectedCategory,
-
         ]);
     }
+    
 
+    
 
     public function actionProduct($id)
     {
